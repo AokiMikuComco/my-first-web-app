@@ -1,10 +1,10 @@
 // ここからコードを書いてください
 const setupConverter = () => {
-  const converterForm = document.querySelector(".converter-form");
-  const converterInput = document.querySelector(".converter-input");
-  const converterFrom = document.querySelector(".converter-from");
-  const converterTo = document.querySelector(".converter-to");
-  const converterResult = document.querySelector(".converter-result");
+  const converterForm = document.querySelector(".converter-form"); //フォーム要素
+  const converterInput = document.querySelector(".converter-input"); //入力値の input 要素（
+  const converterFrom = document.querySelector(".converter-from"); //変換元の select 要素
+  const converterTo = document.querySelector(".converter-to"); //変換先の select 要素
+  const converterResult = document.querySelector(".converter-result"); //結果を表示する要素
 
   const lengthUnit = [
     { name: "meter", base: 1 },
@@ -19,19 +19,27 @@ const setupConverter = () => {
 
   converterFrom.innerHTML = "";
   converterTo.innerHTML = "";
+  converterForm.addEventListener("input", () => {
+    for (const unit of lengthUnit) {
+      converterFrom.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
+      converterTo.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
+    }
 
-  for (const unit of lengthUnit) {
-    converterFrom.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
-    converterTo.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
-  }
+    converterFrom.selectedIndex = 0;
+    converterTo.selectedIndex = 1;
 
-  converterFrom.selectedIndex = 0;
-  converterTo.selectedIndex = 1;
+    const converterInputData = parseFloat(converterInput.value);
+    if (isNaN(converterInputData)) {
+      converterResult.textContent = "Please enter a valid number";
 
-  const converterInputData = parseFloat(converterInput.value);
-  if (isNaN(converterInputData)) {
-    console.log("Please enter a valid number");
-  }
-  return;
+      return;
+    }
+    let fromBase = converterFrom.value;
+    let ToBase = converterTo.value;
+
+    converterValue = (converterInput * fromBase) / ToBase;
+    converterResult = `${converterInput} ${fromBase} = ${converterValue} ${ToBase}`;
+  });
 };
+
 export { setupConverter };
