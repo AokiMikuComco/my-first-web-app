@@ -1,10 +1,10 @@
 // ここからコードを書いてください
 
 const setupTabs = () => {
-  let dth = document.querySelector('[data-tab="home"]');
-  let dtc = document.querySelector('[data-tab="converter"]');
-  let h = document.getElementById("home");
-  let c = document.getElementById("converter");
+  const dth = document.querySelector('[data-tab="home"]');
+  const dtc = document.querySelector('[data-tab="converter"]');
+  const h = document.getElementById("home");
+  const c = document.getElementById("converter");
 
   dth.addEventListener("click", () => {
     c.classList.add("hidden");
@@ -16,4 +16,4 @@ const setupTabs = () => {
     c.classList.remove("hidden");
   });
 };
-export default setupTabs;
+export { setupTabs };
