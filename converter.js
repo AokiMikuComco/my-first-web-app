@@ -19,15 +19,16 @@ const setupConverter = () => {
 
   converterFrom.innerHTML = "";
   converterTo.innerHTML = "";
+
+  for (const unit of lengthUnit) {
+    converterFrom.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
+    converterTo.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
+  }
+
+  converterFrom.selectedIndex = 0;
+  converterTo.selectedIndex = 1;
+
   converterForm.addEventListener("input", () => {
-    for (const unit of lengthUnit) {
-      converterFrom.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
-      converterTo.innerHTML += `<option value="${unit.base}">${unit.name}</option>`;
-    }
-
-    converterFrom.selectedIndex = 0;
-    converterTo.selectedIndex = 1;
-
     const converterInputData = parseFloat(converterInput.value);
     if (isNaN(converterInputData)) {
       converterResult.textContent = "Please enter a valid number";
@@ -35,10 +36,15 @@ const setupConverter = () => {
       return;
     }
     let fromBase = converterFrom.value;
-    let ToBase = converterTo.value;
+    let toBase = converterTo.value;
 
-    converterValue = (converterInput * fromBase) / ToBase;
-    converterResult = `${converterInput} ${fromBase} = ${converterValue} ${ToBase}`;
+    let converterValue = (converterInputData * fromBase) / toBase;
+    //{入力値} {変換元の単位} = {変換後の値} {変換先の単位}
+    converterResult.textContent = `${converterInputData} ${
+      lengthUnit[converterFrom.selectedIndex].name
+    } = ${converterValue.toFixed(3)} ${
+      lengthUnit[converterTo.selectedIndex].name
+    }`;
   });
 };
 

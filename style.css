@@ -131,7 +131,7 @@ ul {
 }
 
 /* コンバーターカード */
-.converter-card {
+.converter-form {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -151,12 +151,27 @@ ul {
   color: #2f2f2f;
   margin-bottom: 8px;
 }
-.form-input {
+.converter-input {
   width: 100%;
   padding: 12px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 0.875rem;
+  margin: 16px;
+}
+.converter-from {
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin: 16px;
+}
+.converter-to {
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin: 16px;
 }
 .form-input:focus {
   outline: none;
@@ -168,15 +183,33 @@ ul {
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
+.from-to {
+  display: flex;
+  width: 100%;
+}
+.fromset {
+  display: flex;
+  /*コレ*/
+  flex-direction: column;
+  width: 100%;
+}
+.toset {
+  display: flex;
+  /*コレ*/
+  flex-direction: column;
+  width: 100%;
+}
 
 /* コンバーター結果 */
 .converter-result-container {
+  display: block;
   text-align: center;
   padding: 16px;
   background-color: #fafafa;
   border-radius: 8px;
 }
 .converter-result {
+  display: block;
   font-size: 1.125rem;
   font-weight: 500;
   color: #4f7cac;

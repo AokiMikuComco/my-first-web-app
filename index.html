@@ -23,8 +23,8 @@
         </div>
 
         <!-- サイドバーにメニューを追加してください -->
-        <ul>
-          <li class="sidebar-menu-item" data-tab="converter">
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item tab-item" data-tab="converter">
             <span class="ri-scales-3-line"></span>
             <span>Unit Converter</span>
           </li>
@@ -67,9 +67,19 @@
 
           <div class="section-body">
             <form class="converter-form">
+              <p>Length Unit Conversion</p>
+              <label for="value">Value </label>
               <input class="converter-input" type="number" value="1000" />
-              <select class="converter-from"></select>
-              <select class="converter-to"></select>
+              <div class="from-to">
+                <div class="fromset">
+                  <label for="from">From</label>
+                  <select class="converter-from"></select>
+                </div>
+                <div class="toset">
+                  <label for="to">To</label>
+                  <select class="converter-to"></select>
+                </div>
+              </div>
               <div class="converter-result"></div>
             </form>
           </div>
