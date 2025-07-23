@@ -217,7 +217,7 @@ ul {
 
 /* 以下flashcards ページ*/
 /* 暗記カードセクション */
-.flashcards-list {
+#flashcards-list {
   display: grid;
   grid-gap: 16px;
   grid-template-columns: 1fr;
@@ -225,17 +225,19 @@ ul {
 }
 
 @media (min-width: 768px) {
-  .flashcards-list {
+  #flashcards-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 1024px) {
-  .flashcards-list {
+  #flashcards-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .flashcard {
+  display: grid;
+
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -279,4 +281,11 @@ ul {
 
 .flashcard-icons button span {
   font-size: 1.125rem;
+}
+
+.section-body {
+  display: grid;
+}
+.hidden {
+  display: none;
 }
