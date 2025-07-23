@@ -22,29 +22,46 @@ export async function setupFlashcards() {
       fll.innerHTML += `<div class="flashcard">
   <div class="flashcard-content">
     <p class="flashcard-title">${word.word}</p>
+    <div class="flashcard-icons">
+    <button class="flashcard-meaning" data-toggle="${word.id}">
+    <span class="ri-eye-line"></span>
+    </button>
+    </div>
   </div>
-  <div data-meaning="${word.id}">
+  <div data-meaning="${word.id}" class="hidden">
     <p>${word.meaning}</p>
   </div>
 </div>
 `;
-
-      /*雛形に追加
-      let new_element = document.createElement("p");
-      new_element.textContent = "word";
-      newElement.appendChild(newContent); // p要素にテキストノードを追加
-      newElement.setAttribute("class", "flashcard-title"); // p要素にidを設定
-      // 親要素（div）への参照を取得
-      let parentDiv = document.getElementsByClassName("flashcard");
-      parentDiv.insertBefore(newElement, parentDiv.firstChild);
-      */
     }
   };
 
   const readFlashcards = async () => {
     const datafetchFlashcards = await fetchFlashcards();
+
     renderFlashcards(datafetchFlashcards);
   };
 
   await readFlashcards();
+
+  //各カードの「意味」を表示・非表示に切り替える
+  const toggleMeaning = (id) => {
+    const cardMeaning = document.querySelector(`[data-meaning="${id}"]`);
+
+    if (cardMeaning.classList.contains("hidden")) {
+      cardMeaning.classList.remove("hidden");
+    } else {
+      cardMeaning.classList.add("hidden");
+    }
+  };
+
+  fll.addEventListener("click", function (event) {
+    const element = event.target.closest(".flashcard-meaning");
+    if (element != null) {
+      const getId = element.getAttribute("data-toggle");
+    } else {
+      return;
+    }
+    toggleMeaning(getId);
+  });
 }
